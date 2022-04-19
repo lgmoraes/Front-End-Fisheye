@@ -1,4 +1,5 @@
 import '../../scss/style.scss';
+import '../../scss/photographer.scss';
 import data from '../../data/photographers.json';
 
 async function displayData() {
