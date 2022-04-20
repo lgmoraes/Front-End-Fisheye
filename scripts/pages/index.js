@@ -1,9 +1,8 @@
-import '../../scss/style.scss';
-import '../../scss/photographer.scss';
+import '../../scss/main.scss';
 import data from '../../data/photographers.json';
 
 async function displayData() {
-	const photographersSection = document.querySelector(".photographer_section");
+	const photographersSection = document.querySelector(".photographers");
 
 	data.photographers.forEach((photographer) => {
 		const photographerModel = photographerFactory(photographer);
