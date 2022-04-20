@@ -6,7 +6,7 @@
 	gap: 70px;
 	margin-top: 100px;
 
-	article {
+	.photographer {
 		justify-self: center;
 		display: flex;
 		justify-content: center;
@@ -16,12 +16,27 @@
 		h2 {
 			color: $color-primary;
 			font-size: 36px;
+			margin-bottom: 0.1em;
 		}
 		img {
 			height: 200px;
 			width: 200px;
-            border-radius: 50%;
-            object-fit: cover;
+			border-radius: 50%;
+			object-fit: cover;
+		}
+		&__city {
+			margin: 0.2em;
+            font-size: 13px;
+			color: $color-tertiary;
+		}
+		&__tagline {
+            font-size: 10px;
+			margin: 0.2em;
+		}
+		&__price {
+            font-size: 9px;
+			color: $color-secondary;
+			margin: 0.2em;
 		}
 	}
 }
