@@ -7,6 +7,9 @@
 	margin-top: 100px;
 
 	.photographer {
+		@include focusable;
+
+		position: relative;
 		justify-self: center;
 		display: flex;
 		justify-content: center;
@@ -26,15 +29,15 @@
 		}
 		&__city {
 			margin: 0.2em;
-            font-size: 13px;
+			font-size: 13px;
 			color: $color-tertiary;
 		}
 		&__tagline {
-            font-size: 10px;
+			font-size: 10px;
 			margin: 0.2em;
 		}
 		&__price {
-            font-size: 9px;
+			font-size: 9px;
 			color: $color-secondary;
 			margin: 0.2em;
 		}

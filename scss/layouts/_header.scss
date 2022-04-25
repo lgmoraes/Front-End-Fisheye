@@ -8,11 +8,19 @@
 	height: 90px;
 
 	h1 {
+		@include focusable;
+
 		color: $color-tertiary;
-		margin-right: 100px;
+		margin-right: $header-margin;
 	}
 	&__logo {
+		@include focusable-img;
+
 		height: 50px;
-		margin-left: 100px;
+		margin-left: $header-margin;
+
+		&:focus {
+			margin-left: $header-margin - ($focus-offset + $focus-border-size);
+		}
 	}
 }

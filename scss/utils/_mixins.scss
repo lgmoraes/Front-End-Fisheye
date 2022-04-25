@@ -1,2 +1,32 @@
 @use "variables" as *;
 
+@mixin focusable {
+	/* Supprime le bord gris par défaut */
+	outline: 0;
+	position: relative;
+
+	&:focus::after {
+		content: "";
+
+		border: $focus-border-size solid $color-primary;
+		border-radius: $focus-offset;
+		outline: none;
+
+		position: absolute;
+		top: -$focus-offset;
+		bottom: -$focus-offset;
+		left: -$focus-offset;
+		right: -$focus-offset;
+	}
+}
+
+@mixin focusable-img {
+	&:focus {
+		padding: $focus-offset;
+
+		border: $focus-border-size solid $color-primary;
+		border-radius: $focus-offset;
+
+		outline: none;
+	}
+}
