@@ -5,13 +5,16 @@ function photographerFactory(data) {
 	function getUserCardDOM() {
 		const article = document.createElement("article");
 		article.className = "photographer";
-		article.tabIndex = 0;
 		article.innerHTML = `
-			<img src="${picture}" alt="Photo du photographe ${name}" />
-			<h2>${name}</h2>
-			<p class="photographer__city">${city}</p>
-			<p class="photographer__tagline">${tagline}</p>
-			<p class="photographer__price">${price}€/jour</p>
+			<div class="photographer__top" tabIndex="0">
+				<img src="${picture}" alt="Photo du photographe ${name}" />
+				<h2>${name}</h2>
+			</div>
+			<div class="photographer__bottom" tabIndex="0">
+				<p class="photographer__city">${city}</p>
+				<p class="photographer__tagline">${tagline}</p>
+				<p class="photographer__price">${price}€/jour</p>
+			</div>
 		`;
 
 		return article;
