@@ -1,7 +1,7 @@
 const path = require("path");
 const postcssPresetEnv = require('postcss-preset-env');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const dev = process.env.NODE_ENV === "dev";
+const dev = process.argv.indexOf('--mode=development') !== -1;
 
 module.exports = {
 	entry: {
@@ -56,5 +56,4 @@ module.exports = {
 		static: "./",
 		open: true,
 	},
-	mode: dev ? "development" : "production",
 };
