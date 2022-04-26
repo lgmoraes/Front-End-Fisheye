@@ -4,7 +4,7 @@ async function displayData() {
 	const photographersSection = document.querySelector(".photographers");
 	const data = await API.getPhotographers();
 
-	data.photographers.forEach((photographer) => {
+	data.forEach((photographer) => {
 		const photographerModel = photographerFactory(photographer);
 		const userCardDOM = photographerModel.getUserCardDOM();
 		photographersSection.appendChild(userCardDOM);

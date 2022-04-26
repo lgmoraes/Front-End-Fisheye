@@ -1,5 +1,14 @@
 @use "../utils/" as *;
 
+/*** RESET CSS ***/
+
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+/*** BASE ***/
+
 body {
 	font-family: $font-primary;
 	margin: 0;

@@ -6,10 +6,10 @@ function photographerFactory(data) {
 		const article = document.createElement("article");
 		article.className = "photographer";
 		article.innerHTML = `
-			<div class="photographer__top" tabIndex="0">
+			<a href="photographer.html?id=${id}" class="photographer__top">
 				<img src="${picture}" alt="Photo du photographe ${name}" />
 				<h2>${name}</h2>
-			</div>
+			</a>
 			<div class="photographer__bottom" tabIndex="0">
 				<p class="photographer__city">${city}</p>
 				<p class="photographer__tagline">${tagline}</p>

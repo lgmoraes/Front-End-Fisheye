@@ -7,6 +7,7 @@ module.exports = {
 	entry: {
 		polyfill: "babel-polyfill",
 		index: "./scripts/pages/index.js",
+		photographer: "./scripts/pages/photographer.js",
 	},
 	output: {
 		path: path.resolve(__dirname),
@@ -48,7 +49,7 @@ module.exports = {
 	},
 	plugins: [
 		new MiniCssExtractPlugin({
-			filename: "dist/[name].css",
+			filename: "dist/style.css",
 		}),
 	],
 	devtool: dev ? "source-map" : false,
