@@ -2,7 +2,7 @@ import "../../scss/main.scss";
 
 async function displayData() {
 	const photographersSection = document.querySelector(".photographers");
-	const data = await fetch("../../data/photographers.json").then((res) => res.json());
+	const data = await API.getPhotographers();
 
 	data.photographers.forEach((photographer) => {
 		const photographerModel = photographerFactory(photographer);
