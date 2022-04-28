@@ -21,3 +21,5 @@ function photographerFactory(data) {
 	}
 	return { id, name, portrait, city, tagline, price, getUserCardDOM };
 }
+
+export default photographerFactory;

@@ -1,4 +1,6 @@
 import "../../scss/main.scss";
+import API from "../../scripts/api.js";
+import photographerFactory from "../../scripts/factories/photographer.js";
 
 async function displayData() {
 	const photographersSection = document.querySelector(".photographers");

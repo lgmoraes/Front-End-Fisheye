@@ -13,3 +13,5 @@ const API = {
 			.then((res) => res.photographers);
 	},
 };
+
+export default API;

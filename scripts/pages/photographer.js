@@ -1,3 +1,6 @@
+import API from "../../scripts/api.js";
+import photographerFactory from "../../scripts/factories/photographer.js";
+
 async function displayData() {
 	const photographerSection = document.querySelector(".photograph-header");
 	const mediasSection = document.querySelector(".medias");
