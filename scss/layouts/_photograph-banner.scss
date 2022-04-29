@@ -1,0 +1,61 @@
+@use "../utils/" as *;
+
+.photograph-banner {
+	max-width: 1240px;
+	margin: auto;
+	padding: 70px;
+
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+
+	&__section {
+		display: flex;
+		flex: 1 1 0;
+		flex-direction: column;
+		justify-content: center;
+	}
+	&__info {
+		@include focusable;
+
+		> * {
+			margin: 8px 0;
+		}
+	}
+	&__name {
+		line-height: 1em;
+		font-size: 4em;
+		color: $color-primary;
+	}
+	&__location {
+		font-size: 1.5em;
+		color: $color-tertiary;
+	}
+	&__tagline {
+		color: $color-secondary;
+	}
+	button {
+		@include focusable;
+
+		margin: auto auto;
+		display: flex;
+	}
+	img {
+		@include focusable-img;
+		&:focus {
+			padding: 0;
+			border-radius: 50%;
+		}
+
+		height: 200px;
+		width: 200px;
+		margin: auto;
+
+		border: 2px solid transparent;
+		border-radius: 50%;
+		object-fit: cover;
+
+		display: flex;
+	}
+}

@@ -2,18 +2,15 @@ import API from "../../scripts/api.js";
 import photographerFactory from "../../scripts/factories/photographer.js";
 
 async function displayData() {
-	const photographerSection = document.querySelector(".photograph-header");
-	const mediasSection = document.querySelector(".medias");
+	const $photographBanner = document.querySelector(".photograph-banner");
+	const $mediasSection = document.querySelector(".medias");
+
 	const photographerId = parseInt(new URL(document.location).searchParams.get("id"));
 	const data = await API.getMedias(photographerId);
+	const photographerModel = photographerFactory(data.photographer);
+	const photographerBannerDOM = photographerModel.getUserBannerDOM();
 
-	photographerSection.innerHTML = `
-        <p>${data.photographer.name}</p>
-        <p>${data.photographer.city}, ${data.photographer.country}</p>
-        <p>${data.photographer.tagline}</p>
-        <img src="assets/photographers/${data.photographer.portrait}" height="400" />
-        <button>Contactez-moi</button>
-    `;
+	$photographBanner.parentElement.replaceChild(photographerBannerDOM, $photographBanner);
 
 	data.medias.forEach((media) => {
 		const mediaCardDOM = document.createElement("div");
@@ -35,7 +32,7 @@ async function displayData() {
             <p>${media.title}, ${media.likes} likes</p>
         `;
 
-		mediasSection.appendChild(mediaCardDOM);
+		$mediasSection.appendChild(mediaCardDOM);
 	});
 }
 
