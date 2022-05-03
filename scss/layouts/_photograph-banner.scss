@@ -1,9 +1,10 @@
 @use "../utils/" as *;
 
 .photograph-banner {
-	max-width: 1240px;
+	max-width: $page-width;
 	margin: auto;
 	padding: 70px;
+	box-sizing: border-box;
 
 	display: flex;
 	flex-direction: row;
@@ -41,6 +42,9 @@
 		margin: auto auto;
 		display: flex;
 	}
+	&__photo {
+		align-items: flex-end;
+	}
 	img {
 		@include focusable-img;
 		&:focus {
@@ -50,7 +54,6 @@
 
 		height: 200px;
 		width: 200px;
-		margin: auto;
 
 		border: 2px solid transparent;
 		border-radius: 50%;

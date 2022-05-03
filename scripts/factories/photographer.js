@@ -32,7 +32,7 @@ export default function photographerFactory(data) {
 			<div class="photograph-banner__section">
 				<button class="contact_button btn-primary" onclick="displayModal() tabindex="0"">Contactez-moi</button>
 			</div>
-			<div class="photograph-banner__section">
+			<div class="photograph-banner__section photograph-banner__photo">
 				<img src="assets/photographers/${portrait}" height="400" tabindex="0" />
 			</div>
 		`;

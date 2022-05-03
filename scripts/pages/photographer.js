@@ -1,6 +1,6 @@
 import API from "../api";
 import photographerFactory from "../factories/photographer";
-import { getPhotographFolder } from "../utils/functions";
+import mediaFactory from "../factories/media";
 
 async function displayData() {
 	const $photographBanner = document.querySelector(".photograph-banner");
@@ -11,27 +11,15 @@ async function displayData() {
 	const photographerModel = photographerFactory(data.photographer);
 	const photographerBannerDOM = photographerModel.getUserBannerDOM();
 
+	/* DISPLAY BANNER */
+
 	$photographBanner.parentElement.replaceChild(photographerBannerDOM, $photographBanner);
 
+	/* DISPLAY THUMBNAILS */
+
 	data.medias.forEach((media) => {
-		const mediaCardDOM = document.createElement("div");
-		const thumbnail = document.createElement("div");
-		const folder = getPhotographFolder(data.photographer.name);
-
-		if (media.image) {
-			thumbnail.innerHTML = `
-                <img src="assets/medias/${folder}/${media.image}" height="400" />
-            `;
-		} else {
-			thumbnail.innerHTML = `
-                <video src="assets/medias/${folder}/${media.video}" height="400" controls="true"></video>
-            `;
-		}
-
-		mediaCardDOM.appendChild(thumbnail);
-		mediaCardDOM.innerHTML += `
-            <p>${media.title}, ${media.likes} likes</p>
-        `;
+		const mediaModel = mediaFactory(media, data.photographer);
+		const mediaCardDOM = mediaModel.getThumbnailDOM();
 
 		$mediasSection.appendChild(mediaCardDOM);
 	});

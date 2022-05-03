@@ -1,0 +1,46 @@
+@use "../utils/" as *;
+
+.medias {
+	max-width: $page-width;
+	margin: auto;
+
+	display: flex;
+    justify-content: center;
+	flex-wrap: wrap;
+	row-gap: 30px;
+	column-gap: 80px;
+}
+.media {
+	cursor: pointer;
+
+	&__thumbnail {
+		width: $thumbnail-width;
+		height: $thumbnail-height - 30px;
+
+        border-radius: 5px;
+		object-fit: cover;
+	}
+	&__desc {
+		width: $thumbnail-width;
+		height: 30px;
+
+		color: $color-tertiary;
+
+		display: flex;
+		justify-content: space-between;
+
+		> * {
+			margin: 0;
+
+			font-size: 19px;
+			font-weight: normal;
+
+			display: flex;
+			align-items: center;
+		}
+	}
+	&__likes {
+		width: 55px;
+		justify-content: flex-end;
+	}
+}
