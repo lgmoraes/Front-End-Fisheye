@@ -1,4 +1,4 @@
-const API = {
+export default {
 	getMedias: async function (id) {
 		return await fetch("../../data/photographers.json")
 			.then((res) => res.json())
@@ -13,5 +13,3 @@ const API = {
 			.then((res) => res.photographers);
 	},
 };
-
-export default API;

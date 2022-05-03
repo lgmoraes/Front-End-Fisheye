@@ -1,5 +1,6 @@
-import API from "../../scripts/api.js";
-import photographerFactory from "../../scripts/factories/photographer.js";
+import API from "../api";
+import photographerFactory from "../factories/photographer";
+import { getPhotographFolder } from "../utils/functions";
 
 async function displayData() {
 	const $photographBanner = document.querySelector(".photograph-banner");
@@ -15,7 +16,7 @@ async function displayData() {
 	data.medias.forEach((media) => {
 		const mediaCardDOM = document.createElement("div");
 		const thumbnail = document.createElement("div");
-		const folder = data.photographer.name.split(" ")[0].replace("-", " ");
+		const folder = getPhotographFolder(data.photographer.name);
 
 		if (media.image) {
 			thumbnail.innerHTML = `
