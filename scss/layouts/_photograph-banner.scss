@@ -2,9 +2,12 @@
 
 .photograph-banner {
 	max-width: $page-width;
-	margin: auto;
-	padding: 70px;
+	margin: 20px auto;
+	padding: 50px;
 	box-sizing: border-box;
+
+	background-color: $color-accent;
+	border-radius: $border-radius;
 
 	display: flex;
 	flex-direction: row;

@@ -5,9 +5,9 @@
 	padding: 1em 1.5em;
 
 	color: black;
-	background-color: #db8876;
-	border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
+	background-color: $background-secondary;
+	border-top-left-radius: $border-radius;
+	border-top-right-radius: $border-radius;
 	font-weight: 500;
 
 	position: fixed;

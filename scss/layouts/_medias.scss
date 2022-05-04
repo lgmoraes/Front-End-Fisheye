@@ -1,14 +1,14 @@
 @use "../utils/" as *;
 
 .medias {
-	max-width: $page-width;
+	padding: 0 20px;
 	margin: auto;
 
 	display: flex;
-    justify-content: center;
+	justify-content: center;
 	flex-wrap: wrap;
 	row-gap: 30px;
-	column-gap: 80px;
+	column-gap: 95px;
 }
 .media {
 	cursor: pointer;
@@ -17,7 +17,7 @@
 		width: $thumbnail-width;
 		height: $thumbnail-height - 30px;
 
-        border-radius: 5px;
+		border-radius: $border-radius;
 		object-fit: cover;
 	}
 	&__desc {
