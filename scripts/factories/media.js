@@ -11,8 +11,8 @@ export default function mediaFactory(media, photographer) {
 		article.innerHTML = `
 			${
 				media.image
-					? `<img class="media__thumbnail" src="assets/medias/${mediaFolder}/${media.image}" />`
-					: `<video class="media__thumbnail" src="assets/medias/${mediaFolder}/${media.video}" muted="true"></video>`
+					? `<img class="media__thumbnail" src="assets/thumbnails/${mediaFolder}/${media.image}" />`
+					: `<video class="media__thumbnail" src="assets/thumbnails/${mediaFolder}/${media.video}" muted="true"></video>`
 			}
 			<div class="media__desc">
 				<h2 class="media__name">${title}</h2>
