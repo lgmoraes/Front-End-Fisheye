@@ -1,13 +1,12 @@
 import API from "../api";
 import photographerFactory from "../factories/photographer";
 import mediaFactory from "../factories/media";
+import contactForm from "../utils/contactForm";
 
-async function displayData() {
+async function displayData(data) {
 	const $photographBanner = document.querySelector(".photograph-banner");
 	const $mediasSection = document.querySelector(".medias");
 
-	const photographerId = parseInt(new URL(document.location).searchParams.get("id"));
-	const data = await API.getMedias(photographerId);
 	const photographerModel = photographerFactory(data.photographer);
 	const photographerBannerDOM = photographerModel.getUserBannerDOM();
 
@@ -46,8 +45,14 @@ async function displayData() {
 }
 
 async function init() {
-	// Affiche le photographe et ses photos
-	displayData();
+	const photographerId = parseInt(new URL(document.location).searchParams.get("id"));
+	const data = await API.getMedias(photographerId);
+
+	/* Affiche le photographe et ses photos */
+	displayData(data);
+
+	/* MODAL */
+	contactForm.init(data.photographer.name);
 }
 
 init();

@@ -1,0 +1,84 @@
+@use "../utils/" as *;
+
+.modal {
+	width: 60%;
+	max-width: 450px;
+	padding: 25px;
+	margin: auto;
+
+	border-radius: 5px;
+	background-color: $background-secondary;
+
+	position: relative;
+	display: flex;
+	flex-direction: column;
+
+	&[aria-hidden="true"] {
+		display: none;
+	}
+	header {
+		justify-content: space-between;
+		width: 100%;
+
+		.modal__close {
+			cursor: pointer;
+
+			position: absolute;
+			top: 35px;
+			right: 35px;
+		}
+		h2 {
+			margin: 0;
+			margin-right: 60px;
+			margin-bottom: 20px;
+
+			font-size: 38px;
+			font-weight: normal;
+		}
+	}
+	form {
+		display: flex;
+		width: 100%;
+		flex-direction: column;
+		align-items: flex-start;
+
+		label {
+			color: $color-secondary;
+			font-size: 27px;
+		}
+		input {
+			width: 100%;
+			height: 45px;
+			padding: 10px;
+			box-sizing: border-box;
+
+			font-size: 18px;
+
+			border: none;
+			border-radius: 5px;
+		}
+		textarea {
+			width: 100%;
+			height: 80px;
+			resize: vertical;
+
+			font-size: 16px;
+			border: none;
+			border-radius: $border-radius;
+		}
+	}
+	&__button {
+		width: 160px;
+		height: 57px;
+		padding: 11px;
+		margin-top: 20px;
+
+		font-size: 16px;
+		font-weight: bold;
+		color: white;
+		border: none;
+		background-color: $background-primary;
+		border-radius: 5px;
+		cursor: pointer;
+	}
+}

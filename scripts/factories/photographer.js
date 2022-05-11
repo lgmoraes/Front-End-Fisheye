@@ -1,3 +1,5 @@
+import contactForm from "../utils/contactForm";
+
 export default function photographerFactory(data) {
 	const { id, name, portrait, city, country, tagline, price } = data;
 	const picture = `assets/photographers/${portrait}`;
@@ -30,12 +32,14 @@ export default function photographerFactory(data) {
 				<p class="photograph-banner__tagline">${tagline}</p>
 			</div>
 			<div class="photograph-banner__section">
-				<button class="contact_button btn-primary" onclick="displayModal() tabindex="0"">Contactez-moi</button>
+				<button class="contact_button btn-primary" tabindex="0"">Contactez-moi</button>
 			</div>
 			<div class="photograph-banner__section photograph-banner__photo">
 				<img src="assets/photographers/${portrait}" height="400" tabindex="0" />
 			</div>
 		`;
+
+		section.querySelector(".contact_button").addEventListener("click", contactForm.open);
 
 		return section;
 	}
