@@ -20,25 +20,42 @@
 			<aside class="insert"></aside>
 		</main>
 		<div class="overlay" aria-hidden="true">
-			<div id="modal" class="modal" aria-hidden="true" role="dialog">
+			<div id="modal" class="modal" aria-hidden="true" role="dialog" tabindex="0">
 				<header>
-					<h2>
+					<h2 id="modal__title" aria-label="Contact me" tabindex="0">
 						Contactez-moi<br />
 						<span id="modal__header-name"></span>
 					</h2>
-					<img class="modal__close" src="assets/icons/close.svg" />
 				</header>
 				<form>
-					<label for="first">Prénom</label>
-					<input id="first" name="first" type="text" />
-					<label for="last">Nom</label>
-					<input id="last" name="last" type="text" />
-					<label for="email">Email</label>
-					<input id="email" name="email" type="email" />
-					<label for="message">Votre message</label>
-					<textarea id="message" name="message"></textarea>
-					<button class="modal__button">Envoyer</button>
+					<label for="first" id="first-label" aria-label="First name" tabindex="0">
+						Prénom
+					</label>
+					<input id="first" name="first" type="text" aria-labelledby="first-label" />
+					<label for="last" id="last-label" aria-label="Last name" tabindex="0">
+						Nom
+					</label>
+					<input id="last" name="last" type="text" aria-labelledby="last-label" />
+					<label for="email" id="email-label" aria-label="Email" tabindex="0">
+						Email
+					</label>
+					<input id="email" name="email" type="email" aria-labelledby="email-label" />
+					<label for="message" id="message-label" aria-label="Your message" tabindex="0">
+						Votre message
+					</label>
+					<textarea
+						id="message"
+						name="message"
+						aria-labelledby="message-label"
+					></textarea>
+					<button class="modal__button" aria-label="Send">Envoyer</button>
 				</form>
+				<img
+					class="modal__close"
+					src="assets/icons/close.svg"
+					aria-label="Close Contact form"
+					tabindex="0"
+				/>
 			</div>
 		</div>
 		<script src="dist/polyfill.js"></script>

@@ -30,3 +30,32 @@
 		outline: none;
 	}
 }
+
+@mixin focusable-button {
+	&:focus {
+		outline: 0;
+		position: relative;
+
+		&::after {
+			content: "";
+
+			border: $focus-border-size solid $background-primary;
+			border-radius: 8px;
+
+			outline: none;
+			position: absolute;
+			top: -4px;
+			bottom: -4px;
+			left: -4px;
+			right: -4px;
+		}
+	}
+}
+
+@mixin focusable-modal {
+	&:focus {
+		outline: 2px solid $color-tertiary;
+		border-radius: $border-radius;
+		z-index: 1;
+	}
+}

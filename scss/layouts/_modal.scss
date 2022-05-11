@@ -12,21 +12,15 @@
 	position: relative;
 	display: flex;
 	flex-direction: column;
-
+	@include focusable-modal;
 	&[aria-hidden="true"] {
 		display: none;
 	}
+
 	header {
 		justify-content: space-between;
 		width: 100%;
 
-		.modal__close {
-			cursor: pointer;
-
-			position: absolute;
-			top: 35px;
-			right: 35px;
-		}
 		h2 {
 			margin: 0;
 			margin-right: 60px;
@@ -34,6 +28,8 @@
 
 			font-size: 38px;
 			font-weight: normal;
+
+			@include focusable-modal;
 		}
 	}
 	form {
@@ -45,6 +41,8 @@
 		label {
 			color: $color-secondary;
 			font-size: 27px;
+
+			@include focusable-modal;
 		}
 		input {
 			width: 100%;
@@ -56,6 +54,8 @@
 
 			border: none;
 			border-radius: 5px;
+
+			@include focusable-modal;
 		}
 		textarea {
 			width: 100%;
@@ -65,6 +65,8 @@
 			font-size: 16px;
 			border: none;
 			border-radius: $border-radius;
+
+			@include focusable-modal;
 		}
 	}
 	&__button {
@@ -80,5 +82,16 @@
 		background-color: $background-primary;
 		border-radius: 5px;
 		cursor: pointer;
+
+		@include focusable-button;
+	}
+	.modal__close {
+		cursor: pointer;
+
+		position: absolute;
+		top: 35px;
+		right: 35px;
+
+		@include focusable-modal;
 	}
 }
