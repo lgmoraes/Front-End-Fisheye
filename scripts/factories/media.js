@@ -1,7 +1,8 @@
 import { getPhotographFolder } from "../utils/functions";
+import lightbox from "../utils/lightbox";
 
 export default function mediaFactory(media, photographer) {
-	const { id, title, file, date, likes } = media;
+	const { id, title, date, likes } = media;
 	const mediaFolder = getPhotographFolder(photographer.name);
 
 	function getThumbnailDOM() {
@@ -20,8 +21,13 @@ export default function mediaFactory(media, photographer) {
 			</div>
 		`;
 
+		article.addEventListener("click", function () {
+			const index = Array.from(this.parentElement.children).indexOf(this);
+			lightbox.open(index);
+		});
+
 		return article;
 	}
 
-	return { id, title, file, date, likes, getThumbnailDOM };
+	return { id, title, date, likes, getThumbnailDOM };
 }

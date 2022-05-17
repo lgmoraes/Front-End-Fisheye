@@ -2,6 +2,7 @@ import API from "../api";
 import photographerFactory from "../factories/photographer";
 import mediaFactory from "../factories/media";
 import contactForm from "../utils/contactForm";
+import lightbox from "../utils/lightbox";
 
 async function displayData(data) {
 	const $photographBanner = document.querySelector(".photograph-banner");
@@ -23,7 +24,7 @@ async function displayData(data) {
 		$mediasSection.appendChild(mediaCardDOM);
 	});
 
-	document.querySelectorAll("video").forEach((video) => {
+	document.querySelectorAll(".medias video").forEach((video) => {
 		video.addEventListener("mouseenter", () => {
 			video.play();
 		});
@@ -51,8 +52,9 @@ async function init() {
 	/* Affiche le photographe et ses photos */
 	displayData(data);
 
-	/* MODAL */
+	/* MODAL & LIGHTBOX */
 	contactForm.init(data.photographer.name);
+	lightbox.init(data.medias, data.photographer.name);
 }
 
 init();

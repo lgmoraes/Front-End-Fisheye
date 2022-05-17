@@ -57,6 +57,23 @@
 					tabindex="0"
 				/>
 			</div>
+			<div id="lightbox" class="lightbox" aria-hidden="true" role="dialog" tabindex="0">
+				<img class="lightbox__img" aria-hidden="true" tabindex="0"></img>
+				<video class="lightbox__video" controls="true" aria-hidden="true" tabindex="0"></video>
+				<h2 class="lightbox__title" tabindex="0"></h2>
+				<div role="button" class="lightbox__arrowLeft" tabindex="0">
+					<p class="sr-only">Previous</p>
+				</div>
+				<div role="button" class="lightbox__arrowRight" tabindex="0">
+					<p class="sr-only">Next</p>
+				</div>
+				<div
+					role="button"
+					class="lightbox__close"
+					aria-label="Close Lightbox"
+					tabindex="0"
+				></div>
+			</div>
 		</div>
 		<script src="dist/polyfill.js"></script>
 		<script src="dist/photographer.js"></script>
