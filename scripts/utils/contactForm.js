@@ -11,7 +11,7 @@ function init(title) {
 	$modal__button.addEventListener("click", (e) => send(e));
 	$modal__close.addEventListener("click", close);
 	$modal__close.addEventListener("keyup", (e) => {
-		if (e.key !== " ") return false;
+		if (e.key !== " " && e.key !== "Enter") return false;
 
 		close();
 	});
@@ -25,6 +25,9 @@ function init(title) {
 			$modal.focus();
 			e.preventDefault();
 		}
+	});
+	$modal.addEventListener("keydown", (e) => {
+		if (e.key === "Escape") close();
 	});
 }
 
