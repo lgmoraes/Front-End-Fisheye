@@ -1,81 +1,129 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<link href="dist/style.css" rel="stylesheet" type="text/css" />
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/png" href="assets/favicon.png" />
-		<link
-			href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap"
-			rel="stylesheet"
-		/>
-		<title>Fisheye - photographe</title>
-	</head>
-	<body>
-		<header class="header">
-			<img src="assets/images/logo.png" class="header__logo" tabindex="0" />
-		</header>
-		<main id="main" aria-hidden="false">
-			<section class="photograph-banner"></section>
-			<section class="medias"></section>
-			<aside class="insert"></aside>
-		</main>
-		<div class="overlay" aria-hidden="true">
-			<div id="modal" class="modal" aria-hidden="true" role="dialog" tabindex="0">
-				<header>
-					<h2 id="modal__title" aria-label="Contact me" tabindex="0">
-						Contactez-moi<br />
-						<span id="modal__header-name"></span>
-					</h2>
-				</header>
-				<form>
-					<label for="first" id="first-label" aria-label="First name" tabindex="0">
-						Prénom
-					</label>
-					<input id="first" name="first" type="text" aria-labelledby="first-label" />
-					<label for="last" id="last-label" aria-label="Last name" tabindex="0">
-						Nom
-					</label>
-					<input id="last" name="last" type="text" aria-labelledby="last-label" />
-					<label for="email" id="email-label" aria-label="Email" tabindex="0">
-						Email
-					</label>
-					<input id="email" name="email" type="email" aria-labelledby="email-label" />
-					<label for="message" id="message-label" aria-label="Your message" tabindex="0">
-						Votre message
-					</label>
-					<textarea
-						id="message"
-						name="message"
-						aria-labelledby="message-label"
-					></textarea>
-					<button class="modal__button" aria-label="Send">Envoyer</button>
-				</form>
-				<img
-					class="modal__close"
-					src="assets/icons/close.svg"
-					aria-label="Close Contact form"
-					tabindex="0"
-				/>
-			</div>
-			<div id="lightbox" class="lightbox" aria-hidden="true" role="dialog" tabindex="0">
-				<img class="lightbox__img" aria-hidden="true" tabindex="0"></img>
-				<video class="lightbox__video" controls="true" aria-hidden="true" tabindex="0"></video>
-				<h2 class="lightbox__title" tabindex="0"></h2>
-				<div role="button" class="lightbox__arrowLeft" tabindex="0">
-					<p class="sr-only">Previous</p>
-				</div>
-				<div role="button" class="lightbox__arrowRight" tabindex="0">
-					<p class="sr-only">Next</p>
-				</div>
-				<div
-					role="button"
-					class="lightbox__close"
-					aria-label="Close Lightbox"
-					tabindex="0"
-				></div>
-			</div>
-		</div>
-		<script src="dist/polyfill.js"></script>
-		<script src="dist/photographer.js"></script>
-	</body>
+  <head>
+    <link href="dist/style.css" rel="stylesheet" type="text/css" />
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="assets/favicon.png" />
+    <link
+      href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <title>Fisheye - photographe</title>
+  </head>
+  <body>
+    <header class="header">
+      <img src="assets/images/logo.png" class="header__logo" tabindex="0" />
+    </header>
+    <main id="main" aria-hidden="false">
+      <section class="photograph-banner"></section>
+      <section class="medias"></section>
+      <aside class="insert"></aside>
+    </main>
+    <div class="overlay" aria-hidden="true">
+      <div
+        id="modal"
+        class="modal"
+        aria-hidden="true"
+        role="dialog"
+        tabindex="0"
+      >
+        <header>
+          <h2 id="modal__title" aria-label="Contact me" tabindex="0">
+            Contactez-moi<br />
+            <span id="modal__header-name"></span>
+          </h2>
+        </header>
+        <form>
+          <label
+            for="first"
+            id="first-label"
+            aria-label="First name"
+            tabindex="0"
+          >
+            Prénom
+          </label>
+          <input
+            id="first"
+            name="first"
+            type="text"
+            aria-required="true"
+            aria-labelledby="first-label"
+          />
+          <label for="last" id="last-label" aria-label="Last name" tabindex="0">
+            Nom
+          </label>
+          <input
+            id="last"
+            name="last"
+            type="text"
+            aria-required="true"
+            aria-labelledby="last-label"
+          />
+          <label for="email" id="email-label" aria-label="Email" tabindex="0">
+            Email
+          </label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            aria-required="true"
+            aria-labelledby="email-label"
+          />
+          <label
+            for="message"
+            id="message-label"
+            aria-label="Your message"
+            tabindex="0"
+          >
+            Votre message
+          </label>
+          <textarea
+            id="message"
+            name="message"
+            aria-required="true"
+            aria-labelledby="message-label"
+          ></textarea>
+          <button class="modal__button" type="submit" aria-label="Send">
+            Envoyer
+          </button>
+        </form>
+        <img
+          class="modal__close"
+          src="assets/icons/close.svg"
+          aria-label="Close Contact form"
+          tabindex="0"
+        />
+      </div>
+      <div
+        id="lightbox"
+        class="lightbox"
+        aria-hidden="true"
+        role="dialog"
+        tabindex="0"
+      >
+        <img class="lightbox__img" aria-hidden="true" tabindex="0" />
+        <video
+          class="lightbox__video"
+          controls="true"
+          aria-hidden="true"
+          tabindex="0"
+        ></video>
+        <h2 class="lightbox__title" tabindex="0"></h2>
+        <div role="button" class="lightbox__arrowLeft" tabindex="0">
+          <p class="sr-only">Previous</p>
+        </div>
+        <div role="button" class="lightbox__arrowRight" tabindex="0">
+          <p class="sr-only">Next</p>
+        </div>
+        <div
+          role="button"
+          class="lightbox__close"
+          aria-label="Close Lightbox"
+          tabindex="0"
+        ></div>
+      </div>
+    </div>
+    <script src="dist/polyfill.js"></script>
+    <script src="dist/photographer.js"></script>
+  </body>
 </html>

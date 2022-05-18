@@ -1,90 +1,90 @@
-import { getPhotographFolder } from "../utils/functions";
+import { getPhotographFolder } from '../utils/functions'
 
-const mediaList = [];
-let mediaList_index = 0;
-let photographFolder;
+const mediaList = []
+let mediaListIndex = 0
+let photographFolder
 
-function init(medias, photographer_name) {
-	const $lightbox__arrowLeft = document.querySelector(".lightbox__arrowLeft");
-	const $lightbox__arrowRight = document.querySelector(".lightbox__arrowRight");
-	const $lightbox__close = document.querySelector(".lightbox__close");
+function init(medias, photographerName) {
+  const lightboxArrowLeft = document.querySelector('.lightbox__arrowLeft')
+  const lightboxArrowRight = document.querySelector('.lightbox__arrowRight')
+  const lightboxClose = document.querySelector('.lightbox__close')
 
-	photographFolder = getPhotographFolder(photographer_name);
+  photographFolder = getPhotographFolder(photographerName)
 
-	medias.forEach((m) => {
-		mediaList.push(m);
-	});
+  medias.forEach((m) => {
+    mediaList.push(m)
+  })
 
-	$lightbox__arrowLeft.addEventListener("click", previous);
-	$lightbox__arrowRight.addEventListener("click", next);
-	$lightbox__close.addEventListener("click", close);
+  lightboxArrowLeft.addEventListener('click', previous)
+  lightboxArrowRight.addEventListener('click', next)
+  lightboxClose.addEventListener('click', close)
 }
 
 function open(index) {
-	const $body = document.querySelector("body");
-	const $overlay = document.querySelector(".overlay");
-	const $lightbox = document.querySelector(".lightbox");
+  const body = document.querySelector('body')
+  const overlay = document.querySelector('.overlay')
+  const lightbox = document.querySelector('.lightbox')
 
-	$lightbox.setAttribute("aria-hidden", "false");
-	$overlay.setAttribute("aria-hidden", "false");
-	$body.classList.add("no-scroll");
+  lightbox.setAttribute('aria-hidden', 'false')
+  overlay.setAttribute('aria-hidden', 'false')
+  body.classList.add('no-scroll')
 
-	displayMedia(index);
+  displayMedia(index)
 
-	$lightbox.focus();
+  lightbox.focus()
 }
 
 function close() {
-	const $body = document.querySelector("body");
-	const $lightbox = document.querySelector(".lightbox");
-	const $lightbox__img = document.querySelector(".lightbox__img");
-	const $overlay = document.querySelector(".overlay");
+  const body = document.querySelector('body')
+  const lightbox = document.querySelector('.lightbox')
+  const img = document.querySelector('.lightbox__img')
+  const overlay = document.querySelector('.overlay')
 
-	$lightbox.setAttribute("aria-hidden", "true");
-	$overlay.setAttribute("aria-hidden", "true");
-	$body.classList.remove("no-scroll");
+  lightbox.setAttribute('aria-hidden', 'true')
+  overlay.setAttribute('aria-hidden', 'true')
+  body.classList.remove('no-scroll')
 
-	/* Prevent image flash when re-open */
-	$lightbox__img.removeAttribute("src");
+  /* Prevent image flash when re-open */
+  img.removeAttribute('src')
 }
 
 function displayMedia(index) {
-	const $lightbox__img = document.querySelector(".lightbox__img");
-	const $lightbox__video = document.querySelector(".lightbox__video");
-	const $lightbox__title = document.querySelector(".lightbox__title");
+  const img = document.querySelector('.lightbox__img')
+  const video = document.querySelector('.lightbox__video')
+  const title = document.querySelector('.lightbox__title')
 
-	mediaList_index = index;
+  mediaListIndex = index
 
-	$lightbox__title.innerHTML = mediaList[index].title;
+  title.innerHTML = mediaList[index].title
 
-	if (mediaList[index].image) {
-		$lightbox__video.setAttribute("aria-hidden", "true");
+  if (mediaList[index].image) {
+    video.setAttribute('aria-hidden', 'true')
 
-		$lightbox__img.setAttribute("aria-hidden", "false");
-		$lightbox__img.src = `assets/medias/${photographFolder}/${mediaList[index].image}`;
-	} else {
-		$lightbox__img.removeAttribute("src"); // Prevent image flash when re-open
-		$lightbox__img.setAttribute("aria-hidden", "true");
+    img.setAttribute('aria-hidden', 'false')
+    img.src = `assets/medias/${photographFolder}/${mediaList[index].image}`
+  } else {
+    img.removeAttribute('src') // Prevent image flash when re-open
+    img.setAttribute('aria-hidden', 'true')
 
-		$lightbox__video.setAttribute("aria-hidden", "false");
-		$lightbox__video.src = `assets/medias/${photographFolder}/${mediaList[index].video}`;
-	}
+    video.setAttribute('aria-hidden', 'false')
+    video.src = `assets/medias/${photographFolder}/${mediaList[index].video}`
+  }
 }
 
 function next() {
-	mediaList_index++;
+  mediaListIndex++
 
-	if (mediaList_index > mediaList.length - 1) mediaList_index = 0;
+  if (mediaListIndex > mediaList.length - 1) mediaListIndex = 0
 
-	displayMedia(mediaList_index);
+  displayMedia(mediaListIndex)
 }
 
 function previous() {
-	mediaList_index--;
+  mediaListIndex--
 
-	if (mediaList_index < 0) mediaList_index = mediaList.length - 1;
+  if (mediaListIndex < 0) mediaListIndex = mediaList.length - 1
 
-	displayMedia(mediaList_index);
+  displayMedia(mediaListIndex)
 }
 
-export default { mediaList, init, open, close, next, previous };
+export default { mediaList, init, open, close, next, previous }

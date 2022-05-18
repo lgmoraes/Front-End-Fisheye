@@ -1,60 +1,65 @@
-import API from "../api";
-import photographerFactory from "../factories/photographer";
-import mediaFactory from "../factories/media";
-import contactForm from "../utils/contactForm";
-import lightbox from "../utils/lightbox";
+import API from '../api'
+import photographerFactory from '../factories/photographer'
+import mediaFactory from '../factories/media'
+import contactForm from '../utils/contactForm'
+import lightbox from '../utils/lightbox'
 
 async function displayData(data) {
-	const $photographBanner = document.querySelector(".photograph-banner");
-	const $mediasSection = document.querySelector(".medias");
+  const photographBanner = document.querySelector('.photograph-banner')
+  const mediasSection = document.querySelector('.medias')
 
-	const photographerModel = photographerFactory(data.photographer);
-	const photographerBannerDOM = photographerModel.getUserBannerDOM();
+  const photographerModel = photographerFactory(data.photographer)
+  const photographerBannerDOM = photographerModel.getUserBannerDOM()
 
-	/* BANNER */
+  /* BANNER */
 
-	$photographBanner.parentElement.replaceChild(photographerBannerDOM, $photographBanner);
+  photographBanner.parentElement.replaceChild(
+    photographerBannerDOM,
+    photographBanner
+  )
 
-	/* THUMBNAILS */
+  /* THUMBNAILS */
 
-	data.medias.forEach((media) => {
-		const mediaModel = mediaFactory(media, data.photographer);
-		const mediaCardDOM = mediaModel.getThumbnailDOM();
+  data.medias.forEach((media) => {
+    const mediaModel = mediaFactory(media, data.photographer)
+    const mediaCardDOM = mediaModel.getThumbnailDOM()
 
-		$mediasSection.appendChild(mediaCardDOM);
-	});
+    mediasSection.appendChild(mediaCardDOM)
+  })
 
-	document.querySelectorAll(".medias video").forEach((video) => {
-		video.addEventListener("mouseenter", () => {
-			video.play();
-		});
-		video.addEventListener("mouseleave", () => {
-			video.pause();
-		});
-	});
+  document.querySelectorAll('.medias video').forEach((video) => {
+    video.addEventListener('mouseenter', () => {
+      video.play()
+    })
+    video.addEventListener('mouseleave', () => {
+      video.pause()
+    })
+  })
 
-	/* INSERT */
+  /* INSERT */
 
-	const likes = data.medias.reduce((cumul, media) => cumul + media.likes, 0);
+  const likes = data.medias.reduce((cumul, media) => cumul + media.likes, 0)
 
-	const insertDOM = document.querySelector(".insert");
-	insertDOM.className = "insert";
-	insertDOM.innerHTML = `
+  const insertDOM = document.querySelector('.insert')
+  insertDOM.className = 'insert'
+  insertDOM.innerHTML = `
 		<p>${likes} ❤</p>
 		<p>${data.photographer.price}€ / jour</p>
-	`;
+	`
 }
 
 async function init() {
-	const photographerId = parseInt(new URL(document.location).searchParams.get("id"));
-	const data = await API.getMedias(photographerId);
+  const photographerId = parseInt(
+    new URL(document.location).searchParams.get('id')
+  )
+  const data = await API.getMedias(photographerId)
 
-	/* Affiche le photographe et ses photos */
-	displayData(data);
+  /* Affiche le photographe et ses photos */
+  displayData(data)
 
-	/* MODAL & LIGHTBOX */
-	contactForm.init(data.photographer.name);
-	lightbox.init(data.medias, data.photographer.name);
+  /* MODAL & LIGHTBOX */
+  contactForm.init(data.photographer.name)
+  lightbox.init(data.medias, data.photographer.name)
 }
 
-init();
+init()

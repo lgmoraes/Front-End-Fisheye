@@ -1,26 +1,26 @@
-@use "../utils/" as *;
+@use '../utils/' as *;
 
 @mixin btn {
-	background: $background-primary;
-	display: block;
-	margin: 0 auto;
-	border-radius: 4px;
-	font-size: 1rem;
-	color: #fff;
-	cursor: pointer;
-	border: 0;
-	transition: background-color .2s linear;
+  background: $background-primary;
+  display: block;
+  margin: 0 auto;
+  border-radius: 4px;
+  font-size: 1rem;
+  color: #fff;
+  cursor: pointer;
+  border: 0;
+  transition: background-color 0.2s linear;
 }
 
 .btn-primary {
-	@include btn;
+  @include btn;
 
-	padding: 1em .5em;
-	margin-top: 0.5em;
+  padding: 1em 0.5em;
+  margin-top: 0.5em;
 
-	font-size: 16px;
-	background: $color-primary;
-	&:focus {
-		background-color: $color-tertiary;
-	}
+  font-size: 16px;
+  background: $color-primary;
+  &:focus {
+    background-color: $color-tertiary;
+  }
 }

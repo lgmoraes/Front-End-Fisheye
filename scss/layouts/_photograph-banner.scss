@@ -1,67 +1,67 @@
-@use "../utils/" as *;
+@use '../utils/' as *;
 
 .photograph-banner {
-	max-width: $page-width;
-	margin: 20px auto;
-	padding: 50px;
-	box-sizing: border-box;
+  max-width: $page-width;
+  margin: 20px auto;
+  padding: 50px;
+  box-sizing: border-box;
 
-	background-color: $color-accent;
-	border-radius: $border-radius;
+  background-color: $color-accent;
+  border-radius: $border-radius;
 
-	display: flex;
-	flex-direction: row;
-	justify-content: space-around;
-	align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
 
-	&__section {
-		display: flex;
-		flex: 1 1 0;
-		flex-direction: column;
-		justify-content: center;
-	}
-	&__info {
-		@include focusable;
+  &__section {
+    display: flex;
+    flex: 1 1 0;
+    flex-direction: column;
+    justify-content: center;
+  }
+  &__info {
+    @include focusable;
 
-		> * {
-			margin: 8px 0;
-		}
-	}
-	&__name {
-		line-height: 1em;
-		font-size: 4em;
-		color: $color-primary;
-	}
-	&__location {
-		font-size: 1.5em;
-		color: $color-tertiary;
-	}
-	&__tagline {
-		color: $color-secondary;
-	}
-	button {
-		@include focusable;
+    > * {
+      margin: 8px 0;
+    }
+  }
+  &__name {
+    line-height: 1em;
+    font-size: 4em;
+    color: $color-primary;
+  }
+  &__location {
+    font-size: 1.5em;
+    color: $color-tertiary;
+  }
+  &__tagline {
+    color: $color-secondary;
+  }
+  button {
+    @include focusable;
 
-		margin: auto auto;
-		display: flex;
-	}
-	&__photo {
-		align-items: flex-end;
-	}
-	img {
-		@include focusable-img;
-		&:focus {
-			padding: 0;
-			border-radius: 50%;
-		}
+    margin: auto auto;
+    display: flex;
+  }
+  &__photo {
+    align-items: flex-end;
+  }
+  img {
+    @include focusable-img;
+    &:focus {
+      padding: 0;
+      border-radius: 50%;
+    }
 
-		height: 200px;
-		width: 200px;
+    height: 200px;
+    width: 200px;
 
-		border: 2px solid transparent;
-		border-radius: 50%;
-		object-fit: cover;
+    border: 2px solid transparent;
+    border-radius: 50%;
+    object-fit: cover;
 
-		display: flex;
-	}
+    display: flex;
+  }
 }

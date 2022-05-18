@@ -1,46 +1,46 @@
-@use "../utils/" as *;
+@use '../utils/' as *;
 
 .medias {
-	padding: 0 20px;
-	margin: auto;
+  padding: 0 20px;
+  margin: auto;
 
-	display: flex;
-	justify-content: center;
-	flex-wrap: wrap;
-	row-gap: 30px;
-	column-gap: 95px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  row-gap: 30px;
+  column-gap: 95px;
 }
 .media {
-	cursor: pointer;
+  cursor: pointer;
 
-	&__thumbnail {
-		width: $thumbnail-width;
-		height: $thumbnail-height - 30px;
+  &__thumbnail {
+    width: $thumbnail-width;
+    height: $thumbnail-height - 30px;
 
-		border-radius: $border-radius;
-		object-fit: cover;
-	}
-	&__desc {
-		width: $thumbnail-width;
-		height: 30px;
+    border-radius: $border-radius;
+    object-fit: cover;
+  }
+  &__desc {
+    width: $thumbnail-width;
+    height: 30px;
 
-		color: $color-tertiary;
+    color: $color-tertiary;
 
-		display: flex;
-		justify-content: space-between;
+    display: flex;
+    justify-content: space-between;
 
-		> * {
-			margin: 0;
+    > * {
+      margin: 0;
 
-			font-size: 19px;
-			font-weight: normal;
+      font-size: 19px;
+      font-weight: normal;
 
-			display: flex;
-			align-items: center;
-		}
-	}
-	&__likes {
-		width: 55px;
-		justify-content: flex-end;
-	}
+      display: flex;
+      align-items: center;
+    }
+  }
+  &__likes {
+    width: 55px;
+    justify-content: flex-end;
+  }
 }

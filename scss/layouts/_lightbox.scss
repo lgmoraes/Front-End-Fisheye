@@ -1,72 +1,73 @@
-@use "../utils/" as *;
+@use '../utils/' as *;
 
 .lightbox {
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	left: 0;
-	right: 0;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
 
-	&[aria-hidden="true"] {
-		display: none;
-	}
+  &[aria-hidden='true'] {
+    display: none;
+  }
 
-	&__img, &__video {
-		width: calc(100% - $lightbox-padding * 2);
-		height: calc(100% - $lightbox-padding * 2);
-		object-fit: contain;
+  &__img,
+  &__video {
+    width: calc(100% - $lightbox-padding * 2);
+    height: calc(100% - $lightbox-padding * 2);
+    object-fit: contain;
 
-		position: absolute;
-		top: $lightbox-padding;
-		bottom: $lightbox-padding;
-		left: $lightbox-padding;
-		right: $lightbox-padding;
+    position: absolute;
+    top: $lightbox-padding;
+    bottom: $lightbox-padding;
+    left: $lightbox-padding;
+    right: $lightbox-padding;
 
-		&[aria-hidden="true"] {
-			display: none;
-		}
-	}
-	&__title {
-		line-height: $lightbox-padding;
-		padding: 0;
+    &[aria-hidden='true'] {
+      display: none;
+    }
+  }
+  &__title {
+    line-height: $lightbox-padding;
+    padding: 0;
 
-		color: $color-tertiary;
+    color: $color-tertiary;
 
-		position: absolute;
-		left: $lightbox-padding;
-		bottom: 0;
-	}
-	&__arrowLeft {
-		width: 30px;
-		height: 48px;
+    position: absolute;
+    left: $lightbox-padding;
+    bottom: 0;
+  }
+  &__arrowLeft {
+    width: 30px;
+    height: 48px;
 
-		background-image: url("/assets/icons/arrow-left.svg");
-		cursor: pointer;
+    background-image: url('/assets/icons/arrow-left.svg');
+    cursor: pointer;
 
-		position: absolute;
-		top: calc(50% - calc(48px / 2));
-		left: calc($lightbox-padding / 2) - calc(30px / 2);
-	}
-	&__arrowRight {
-		width: 30px;
-		height: 48px;
+    position: absolute;
+    top: calc(50% - calc(48px / 2));
+    left: calc($lightbox-padding / 2) - calc(30px / 2);
+  }
+  &__arrowRight {
+    width: 30px;
+    height: 48px;
 
-		background-image: url("/assets/icons/arrow-right.svg");
-		cursor: pointer;
+    background-image: url('/assets/icons/arrow-right.svg');
+    cursor: pointer;
 
-		position: absolute;
-		top: calc(50% - calc(48px / 2));
-		right: calc($lightbox-padding / 2) - calc(30px / 2);
-	}
-	&__close {
-		width: 42px;
-		height: 42px;
+    position: absolute;
+    top: calc(50% - calc(48px / 2));
+    right: calc($lightbox-padding / 2) - calc(30px / 2);
+  }
+  &__close {
+    width: 42px;
+    height: 42px;
 
-		background-image: url("/assets/icons/close-red.svg");
-		cursor: pointer;
+    background-image: url('/assets/icons/close-red.svg');
+    cursor: pointer;
 
-		position: absolute;
-		top: calc($lightbox-padding / 2) - calc(42px / 2);
-		right: calc($lightbox-padding / 2) - calc(42px / 2);
-	}
+    position: absolute;
+    top: calc($lightbox-padding / 2) - calc(42px / 2);
+    right: calc($lightbox-padding / 2) - calc(42px / 2);
+  }
 }

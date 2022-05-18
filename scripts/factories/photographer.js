@@ -1,13 +1,13 @@
-import contactForm from "../utils/contactForm";
+import contactForm from '../utils/contactForm'
 
 export default function photographerFactory(data) {
-	const { id, name, portrait, city, country, tagline, price } = data;
-	const picture = `assets/photographers/${portrait}`;
+  const { id, name, portrait, city, country, tagline, price } = data
+  const picture = `assets/photographers/${portrait}`
 
-	function getUserCardDOM() {
-		const article = document.createElement("article");
-		article.className = "photographer";
-		article.innerHTML = `
+  function getUserCardDOM() {
+    const article = document.createElement('article')
+    article.className = 'photographer'
+    article.innerHTML = `
 			<a href="photographer.html?id=${id}" class="photographer__top">
 				<img src="${picture}" alt="Photo du photographe ${name}" />
 				<h2>${name}</h2>
@@ -17,15 +17,15 @@ export default function photographerFactory(data) {
 				<p class="photographer__tagline">${tagline}</p>
 				<p class="photographer__price">${price}€/jour</p>
 			</div>
-		`;
+		`
 
-		return article;
-	}
+    return article
+  }
 
-	function getUserBannerDOM() {
-		const section = document.createElement("section");
-		section.className = "photograph-banner";
-		section.innerHTML = `
+  function getUserBannerDOM() {
+    const section = document.createElement('section')
+    section.className = 'photograph-banner'
+    section.innerHTML = `
 			<div class="photograph-banner__section photograph-banner__info" tabindex="0">
 				<h1 class="photograph-banner__name">${name}</h1>
 				<p class="photograph-banner__location">${city}, ${country}</p>
@@ -37,12 +37,23 @@ export default function photographerFactory(data) {
 			<div class="photograph-banner__section photograph-banner__photo">
 				<img src="assets/photographers/${portrait}" height="400" tabindex="0" />
 			</div>
-		`;
+		`
 
-		section.querySelector(".contact_button").addEventListener("click", contactForm.open);
+    section
+      .querySelector('.contact_button')
+      .addEventListener('click', contactForm.open)
 
-		return section;
-	}
+    return section
+  }
 
-	return { id, name, portrait, city, tagline, price, getUserCardDOM, getUserBannerDOM };
+  return {
+    id,
+    name,
+    portrait,
+    city,
+    tagline,
+    price,
+    getUserCardDOM,
+    getUserBannerDOM,
+  }
 }
