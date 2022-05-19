@@ -2,7 +2,7 @@
 
 .medias {
   padding: 0 20px;
-  margin: auto;
+  margin: 1em auto 4em;
 
   display: flex;
   justify-content: center;
@@ -19,10 +19,13 @@
 
     border-radius: $border-radius;
     object-fit: cover;
+
+    @include focusable-block;
   }
   &__desc {
     width: $thumbnail-width;
-    height: 30px;
+    height: 25px;
+    margin-top: 5px;
 
     color: $color-tertiary;
 
@@ -38,9 +41,35 @@
       display: flex;
       align-items: center;
     }
+    h2 {
+      @include focusable(4px);
+      &:focus::after {
+        border-radius: 7px;
+      }
+    }
   }
   &__likes {
     width: 55px;
     justify-content: flex-end;
+  }
+  &__heart {
+    width: 16px;
+    height: 16px;
+    margin-left: 4px;
+
+    background: no-repeat center;
+    background-image: url('../assets/icons/heart.svg');
+    transition: 0.3s;
+    &--empty {
+      background-image: url('../assets/icons/heart-empty.svg');
+    }
+    @include focusable-circle(8px);
+    &:focus {
+      margin-left: 15px;
+    }
+    &:focus,
+    &:hover {
+      transform: scale(1.2);
+    }
   }
 }

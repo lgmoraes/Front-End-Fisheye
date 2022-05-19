@@ -9,12 +9,20 @@
   border-top-left-radius: $border-radius;
   border-top-right-radius: $border-radius;
   font-weight: 500;
+  transition: padding 0.3s;
 
   position: fixed;
   right: 50px;
   bottom: 0;
   display: flex;
   justify-content: space-between;
+  z-index: 1;
+  @include focusable-block;
+  &:focus {
+    padding-bottom: 1.5em;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
 
   > p {
     margin: 0;

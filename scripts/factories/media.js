@@ -1,4 +1,5 @@
-import { getPhotographFolder } from '../utils/functions'
+import { getPhotographFolder, getElementIndex } from '../utils/functions'
+import { like } from '../pages/photographer'
 import lightbox from '../utils/lightbox'
 
 export default function mediaFactory(media, photographer) {
@@ -12,18 +13,41 @@ export default function mediaFactory(media, photographer) {
     article.innerHTML = `
 			${
         media.image
-          ? `<img class="media__thumbnail" src="assets/thumbnails/${mediaFolder}/${media.image}" />`
+          ? `<img class="media__thumbnail" src="assets/thumbnails/${mediaFolder}/${media.image}" tabindex="0" />`
           : `<video class="media__thumbnail" src="assets/thumbnails/${mediaFolder}/${media.video}" muted="true"></video>`
       }
 			<div class="media__desc">
-				<h2 class="media__name">${title}</h2>
-				<p class="media__likes">${likes} ❤</p>
+				<h2 class="media__name" tabindex="0">${title}</h2>
+
+				<div class="media__likes">
+          ${likes}
+          <div class="media__heart media__heart--empty" role="button" aria-label="likes" tabindex="0"></div>
+        </div>
 			</div>
 		`
 
+    const thumbnail = article.querySelector('.media__thumbnail')
+    const heart = article.querySelector('.media__heart')
+
     article.addEventListener('click', function () {
-      const index = Array.from(this.parentElement.children).indexOf(this)
+      const index = getElementIndex(this)
       lightbox.open(index)
+    })
+
+    heart.addEventListener('click', function (e) {
+      like(article)
+      e.stopPropagation()
+    })
+
+    article.addEventListener('keydown', function (e) {
+      if (e.key !== ' ' && e.key !== 'Enter') return false
+
+      const index = getElementIndex(this)
+
+      if (e.target === heart) like(this)
+      else if (e.target === thumbnail) lightbox.open(index)
+
+      e.preventDefault()
     })
 
     return article

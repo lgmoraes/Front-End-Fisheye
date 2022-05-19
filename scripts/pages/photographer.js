@@ -36,12 +36,35 @@ async function displayData(data) {
     })
   })
 
+  /* KEY NAVIGATION */
+
+  const logo = document.querySelector('.header__logo')
+  const thumbnailLast = document.querySelector(
+    '.media:last-child .media__heart'
+  )
+
+  logo.addEventListener('keydown', (e) => {
+    if (e.key !== 'Tab' || !e.shiftKey) return false
+
+    thumbnailLast.focus()
+    document.querySelector('html').scrollTop += 100
+    e.preventDefault()
+  })
+  thumbnailLast.addEventListener('keydown', (e) => {
+    if (e.key !== 'Tab' || e.shiftKey) return false
+
+    logo.focus()
+    document.querySelector('html').scrollTop = 0
+    e.preventDefault()
+  })
+
   /* INSERT */
 
   const likes = data.medias.reduce((cumul, media) => cumul + media.likes, 0)
 
   const insertDOM = document.querySelector('.insert')
   insertDOM.className = 'insert'
+  insertDOM.setAttribute('tabindex', '0')
   insertDOM.innerHTML = `
 		<p>${likes} ❤</p>
 		<p>${data.photographer.price}€ / jour</p>
@@ -63,3 +86,7 @@ async function init() {
 }
 
 init()
+
+export function like(el) {
+  console.log('LIKE')
+}

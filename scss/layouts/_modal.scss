@@ -12,7 +12,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  @include focusable-modal;
+  @include focusable-block;
   &[aria-hidden='true'] {
     display: none;
   }
@@ -29,7 +29,7 @@
       font-size: 38px;
       font-weight: normal;
 
-      @include focusable-modal;
+      @include focusable-block;
     }
   }
   form {
@@ -42,7 +42,7 @@
       color: $color-secondary;
       font-size: 27px;
 
-      @include focusable-modal;
+      @include focusable-block;
     }
     input {
       width: 100%;
@@ -55,7 +55,7 @@
       border: none;
       border-radius: 5px;
 
-      @include focusable-modal;
+      @include focusable-block;
     }
     textarea {
       width: 100%;
@@ -66,7 +66,7 @@
       border: none;
       border-radius: $border-radius;
 
-      @include focusable-modal;
+      @include focusable-block;
     }
   }
   &__button {
@@ -92,6 +92,6 @@
     top: 35px;
     right: 35px;
 
-    @include focusable-modal;
+    @include focusable-block;
   }
 }

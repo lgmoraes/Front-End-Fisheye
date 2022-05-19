@@ -1,6 +1,6 @@
 @use 'variables' as *;
 
-@mixin focusable {
+@mixin focusable($offset: $focus-offset) {
   /* Supprime le bord gris par défaut */
   outline: 0;
   position: relative;
@@ -8,24 +8,52 @@
   &:focus::after {
     content: '';
 
-    border: $focus-border-size solid $color-primary;
-    border-radius: $focus-offset;
+    border: solid $focus-border-size $color-primary;
+    border-radius: $offset;
     outline: none;
 
     position: absolute;
-    top: -$focus-offset;
-    bottom: -$focus-offset;
-    left: -$focus-offset;
-    right: -$focus-offset;
+    top: -$offset;
+    bottom: -$offset;
+    left: -$offset;
+    right: -$offset;
   }
 }
 
-@mixin focusable-img {
-  &:focus {
-    padding: $focus-offset;
+@mixin focusable-circle($offset: $focus-offset) {
+  /* Supprime le bord gris par défaut */
+  outline: 0;
+  position: relative;
 
-    border: $focus-border-size solid $color-primary;
-    border-radius: $focus-offset;
+  &:focus::after {
+    content: '';
+
+    border: solid $focus-border-size $color-primary;
+    border-radius: 100%;
+    outline: none;
+
+    position: absolute;
+    top: -$offset;
+    bottom: -$offset;
+    left: -$offset;
+    right: -$offset;
+  }
+}
+
+@mixin focusable-block($round: $border-radius) {
+  &:focus {
+    outline: solid $focus-border-size $color-tertiary;
+    border-radius: $round;
+    z-index: 1;
+  }
+}
+
+@mixin focusable-img ($offset: $focus-offset) {
+  &:focus {
+    padding: $offset;
+
+    border: solid $focus-border-size $color-primary;
+    border-radius: $offset;
 
     outline: none;
   }
@@ -39,7 +67,7 @@
     &::after {
       content: '';
 
-      border: $focus-border-size solid $background-primary;
+      border: solid $focus-border-size $background-primary;
       border-radius: 8px;
 
       outline: none;
@@ -49,13 +77,5 @@
       left: -4px;
       right: -4px;
     }
-  }
-}
-
-@mixin focusable-modal {
-  &:focus {
-    outline: 2px solid $color-tertiary;
-    border-radius: $border-radius;
-    z-index: 1;
   }
 }
