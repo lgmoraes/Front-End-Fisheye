@@ -26,10 +26,12 @@ export default function photographerFactory(data) {
     const section = document.createElement('section')
     section.className = 'photograph-banner'
     section.innerHTML = `
-			<div class="photograph-banner__section photograph-banner__info" tabindex="0">
-				<h1 class="photograph-banner__name">${name}</h1>
-				<p class="photograph-banner__location">${city}, ${country}</p>
-				<p class="photograph-banner__tagline">${tagline}</p>
+			<div class="photograph-banner__section photograph-banner__info">
+				<h1 class="photograph-banner__name" tabindex="0">${name}</h1>
+        <div tabindex="0">
+          <p class="photograph-banner__location">${city}, ${country}</p>
+          <p class="photograph-banner__tagline">${tagline}</p>
+        </div>
 			</div>
 			<div class="photograph-banner__section">
 				<button class="contact_button btn-primary" tabindex="0"">Contactez-moi</button>
