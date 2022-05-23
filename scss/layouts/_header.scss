@@ -1,26 +1,23 @@
 @use '../utils/' as *;
 
 .header {
+  height: 90px;
+  padding: 0 $header-padding;
+
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  height: 90px;
 
+  a {
+    @include focusable;
+  }
+  &__logo {
+    height: 50px;
+  }
   h1 {
     @include focusable;
 
     color: $color-tertiary;
-    margin-right: $header-margin;
-  }
-  &__logo {
-    @include focusable-img;
-
-    height: 50px;
-    margin-left: $header-margin;
-
-    &:focus {
-      margin-left: $header-margin - ($focus-offset + $focus-border-size);
-    }
   }
 }
