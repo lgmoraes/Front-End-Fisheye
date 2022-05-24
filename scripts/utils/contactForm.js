@@ -33,11 +33,13 @@ function init(title) {
 
 function open() {
   const body = document.querySelector('body')
+  const main = document.querySelector('main')
   const modal = document.querySelector('.modal')
   const overlay = document.querySelector('.overlay')
 
   modal.setAttribute('aria-hidden', 'false')
   overlay.setAttribute('aria-hidden', 'false')
+  main.setAttribute('aria-hidden', 'true')
   body.classList.add('no-scroll')
 
   modal.focus()
@@ -45,11 +47,13 @@ function open() {
 
 function close() {
   const body = document.querySelector('body')
+  const main = document.querySelector('main')
   const modal = document.querySelector('.modal')
   const overlay = document.querySelector('.overlay')
 
   modal.setAttribute('aria-hidden', 'true')
   overlay.setAttribute('aria-hidden', 'true')
+  main.setAttribute('aria-hidden', 'false')
   body.classList.remove('no-scroll')
 }
 

@@ -22,11 +22,13 @@ function init(medias, photographerName) {
 
 function open(index) {
   const body = document.querySelector('body')
+  const main = document.querySelector('main')
   const overlay = document.querySelector('.overlay')
   const lightbox = document.querySelector('.lightbox')
 
   lightbox.setAttribute('aria-hidden', 'false')
   overlay.setAttribute('aria-hidden', 'false')
+  main.setAttribute('aria-hidden', 'true')
   body.classList.add('no-scroll')
 
   displayMedia(index)
@@ -36,12 +38,14 @@ function open(index) {
 
 function close() {
   const body = document.querySelector('body')
+  const main = document.querySelector('main')
   const lightbox = document.querySelector('.lightbox')
   const img = document.querySelector('.lightbox__img')
   const overlay = document.querySelector('.overlay')
 
   lightbox.setAttribute('aria-hidden', 'true')
   overlay.setAttribute('aria-hidden', 'true')
+  main.setAttribute('aria-hidden', 'false')
   body.classList.remove('no-scroll')
 
   /* Prevent image flash when re-open */
