@@ -48,7 +48,13 @@
   }
 }
 
-@mixin focusable-img ($offset: $focus-offset) {
+@mixin focusable-inset($width: $focus-border-size) {
+  &:focus {
+    box-shadow: inset 0 0 0 $width $color-tertiary;
+  }
+}
+
+@mixin focusable-img($offset: $focus-offset) {
   &:focus {
     padding: $offset;
 

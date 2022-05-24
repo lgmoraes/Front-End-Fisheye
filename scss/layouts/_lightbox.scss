@@ -1,18 +1,22 @@
 @use '../utils/' as *;
 
 .lightbox {
+  @include focusable-inset;
+  &[aria-hidden='true'] {
+    display: none;
+  }
   position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
 
-  &[aria-hidden='true'] {
-    display: none;
-  }
-
   &__img,
   &__video {
+    @include focusable-block;
+    &[aria-hidden='true'] {
+      display: none;
+    }
     width: calc(100% - $lightbox-padding * 2);
     height: calc(100% - $lightbox-padding * 2);
     object-fit: contain;
@@ -22,14 +26,12 @@
     bottom: $lightbox-padding;
     left: $lightbox-padding;
     right: $lightbox-padding;
-
-    &[aria-hidden='true'] {
-      display: none;
-    }
   }
   &__title {
-    line-height: $lightbox-padding;
+    @include focusable;
     padding: 0;
+    line-height: $lightbox-padding - 50px;
+    margin: 25px 0;
 
     color: $color-tertiary;
 
@@ -38,6 +40,7 @@
     bottom: 0;
   }
   &__arrowLeft {
+    @include focusable;
     width: 30px;
     height: 48px;
 
@@ -49,6 +52,7 @@
     left: calc($lightbox-padding / 2) - calc(30px / 2);
   }
   &__arrowRight {
+    @include focusable;
     width: 30px;
     height: 48px;
 
@@ -60,6 +64,7 @@
     right: calc($lightbox-padding / 2) - calc(30px / 2);
   }
   &__close {
+    @include focusable;
     width: 42px;
     height: 42px;
 

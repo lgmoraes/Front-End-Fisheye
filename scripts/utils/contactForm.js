@@ -10,7 +10,7 @@ function init(title) {
 
   modalButton.addEventListener('click', (e) => send(e))
   modalClose.addEventListener('click', close)
-  modalClose.addEventListener('keyup', (e) => {
+  modalClose.addEventListener('keydown', (e) => {
     if (e.key !== ' ' && e.key !== 'Enter') return false
 
     close()

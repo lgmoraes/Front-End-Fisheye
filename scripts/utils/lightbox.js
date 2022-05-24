@@ -5,9 +5,10 @@ let mediaListIndex = 0
 let photographFolder
 
 function init(medias, photographerName) {
-  const lightboxArrowLeft = document.querySelector('.lightbox__arrowLeft')
-  const lightboxArrowRight = document.querySelector('.lightbox__arrowRight')
-  const lightboxClose = document.querySelector('.lightbox__close')
+  const lightbox = document.querySelector('.lightbox')
+  const arrowLeft = document.querySelector('.lightbox__arrowLeft')
+  const arrowRight = document.querySelector('.lightbox__arrowRight')
+  const closeBtn = document.querySelector('.lightbox__close')
 
   photographFolder = getPhotographFolder(photographerName)
 
@@ -15,9 +16,41 @@ function init(medias, photographerName) {
     mediaList.push(m)
   })
 
-  lightboxArrowLeft.addEventListener('click', previous)
-  lightboxArrowRight.addEventListener('click', next)
-  lightboxClose.addEventListener('click', close)
+  arrowLeft.addEventListener('click', previous)
+  arrowRight.addEventListener('click', next)
+  closeBtn.addEventListener('click', close)
+  lightbox.addEventListener('keydown', (e) => {
+    if (e.key !== 'Tab') return false
+
+    if (e.target === lightbox && e.shiftKey) {
+      closeBtn.focus()
+      e.preventDefault()
+    } else if (e.target === closeBtn && !e.shiftKey) {
+      lightbox.focus()
+      e.preventDefault()
+    }
+  })
+  lightbox.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') {
+      previous()
+    } else if (e.key === 'ArrowRight') {
+      next()
+    }
+  })
+  lightbox.addEventListener('keydown', (e) => {
+    if (e.key !== ' ' && e.key !== 'Enter') return false
+
+    if (e.target === closeBtn) {
+      close()
+    } else if (e.target === arrowLeft) {
+      previous()
+    } else if (e.target === arrowRight) {
+      next()
+    }
+  })
+  lightbox.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') close()
+  })
 }
 
 function open(index) {
