@@ -20,7 +20,7 @@ export default function mediaFactory(media, photographer) {
 				<h2 class="media__name" tabindex="0">${title}</h2>
 
 				<div class="media__likes">
-          ${likes}
+          <span class="media__counter">${likes}</span>
           <div class="media__heart media__heart--empty" role="button" aria-label="likes" tabindex="0"></div>
         </div>
 			</div>

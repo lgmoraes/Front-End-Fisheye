@@ -52,16 +52,6 @@
     justify-content: flex-end;
   }
   &__heart {
-    width: 16px;
-    height: 16px;
-    margin-left: 4px;
-
-    background: no-repeat center;
-    background-image: url('../assets/icons/heart.svg');
-    transition: 0.3s;
-    &--empty {
-      background-image: url('../assets/icons/heart-empty.svg');
-    }
     @include focusable-circle(8px);
     &:focus {
       margin-left: 15px;
@@ -69,6 +59,17 @@
     &:focus,
     &:hover {
       transform: scale(1.2);
+    }
+    width: 16px;
+    height: 16px;
+    margin-left: 4px;
+
+    background: no-repeat center;
+    background-image: url('../assets/icons/heart.svg');
+    background-size: contain;
+    transition: margin 0.3s, transform 0.3s;
+    &--empty {
+      background-image: url('../assets/icons/heart-empty.svg');
     }
   }
 }

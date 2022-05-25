@@ -87,6 +87,21 @@ async function init() {
 
 init()
 
-export function like(el) {
-  console.log('LIKE')
+export function like(article) {
+  const heart = article.querySelector('.media__heart')
+  const counter = article.querySelector('.media__counter')
+  const counterTotal = document.querySelector('.insert p')
+
+  const likes = parseInt(counter.innerHTML)
+  const likesTotal = parseInt(counterTotal.innerHTML)
+
+  if (heart.classList.contains('media__heart--empty')) {
+    heart.classList.remove('media__heart--empty')
+    counter.textContent = likes + 1
+    counterTotal.textContent = `${likesTotal + 1} ❤`
+  } else {
+    heart.classList.add('media__heart--empty')
+    counter.textContent = likes - 1
+    counterTotal.textContent = `${likesTotal - 1} ❤`
+  }
 }
