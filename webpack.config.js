@@ -1,6 +1,7 @@
 const path = require('path')
 const postcssPresetEnv = require('postcss-preset-env')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const svgToMiniDataURI = require('mini-svg-data-uri')
 const dev = process.argv.indexOf('--mode=development') !== -1
 
 module.exports = {
@@ -44,6 +45,15 @@ module.exports = {
           // Compiles Sass to CSS
           'sass-loader',
         ],
+      },
+      {
+        test: /\.svg$/,
+        type: 'asset/inline',
+        generator: {
+          dataUrl: (content) => {
+            return svgToMiniDataURI(content.toString())
+          },
+        },
       },
     ],
   },
