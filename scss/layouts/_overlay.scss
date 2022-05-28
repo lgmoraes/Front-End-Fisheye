@@ -1,16 +1,16 @@
 @use '../utils/' as *;
 
 .overlay {
+  &[aria-hidden='true'] {
+    display: none;
+  }
   background: rgba(232, 232, 232, 0.8);
 
   display: flex;
+  z-index: 2;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-
-  &[aria-hidden='true'] {
-    display: none;
-  }
 }
