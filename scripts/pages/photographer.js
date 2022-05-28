@@ -66,8 +66,8 @@ async function displayData(data) {
   insertDOM.className = 'insert'
   insertDOM.setAttribute('tabindex', '0')
   insertDOM.innerHTML = `
-		<p>${likes} ❤</p>
-		<p>${data.photographer.price}€ / jour</p>
+		<p class="insert__likes">${likes}</p>
+		<p class="insert__price">${data.photographer.price}€ / jour</p>
 	`
 }
 
@@ -98,10 +98,10 @@ export function like(article) {
   if (heart.classList.contains('media__heart--empty')) {
     heart.classList.remove('media__heart--empty')
     counter.textContent = likes + 1
-    counterTotal.textContent = `${likesTotal + 1} ❤`
+    counterTotal.textContent = likesTotal + 1
   } else {
     heart.classList.add('media__heart--empty')
     counter.textContent = likes - 1
-    counterTotal.textContent = `${likesTotal - 1} ❤`
+    counterTotal.textContent = likesTotal - 1
   }
 }

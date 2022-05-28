@@ -1,6 +1,12 @@
 @use '../utils/' as *;
 
 .insert {
+  @include focusable-block;
+  &:focus {
+    padding-bottom: 1.5em;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
   width: 200px;
   padding: 1em 1.5em;
 
@@ -17,14 +23,21 @@
   display: flex;
   justify-content: space-between;
   z-index: 1;
-  @include focusable-block;
-  &:focus {
-    padding-bottom: 1.5em;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-  }
 
   > p {
     margin: 0;
+  }
+  &__likes::after {
+    content: '';
+    width: 20px;
+    height: 15px;
+    margin-top: 3px;
+
+    background: right no-repeat url('/assets/icons/heart-black.svg');
+    background-size: contain;
+    vertical-align: top;
+
+    display: inline-block;
+    position: relative;
   }
 }
