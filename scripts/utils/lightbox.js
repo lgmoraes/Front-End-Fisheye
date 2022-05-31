@@ -102,6 +102,8 @@ function displayMedia(index) {
 
     thumbnail.setAttribute('aria-hidden', 'false')
     img.setAttribute('aria-hidden', 'true') // Sera affiché lorsque l'image haute résolution sera chargé
+    thumbnail.setAttribute('alt', mediaList[index].title)
+    img.setAttribute('alt', mediaList[index].title)
     thumbnail.src = `assets/thumbnails/${photographFolder}/${mediaList[index].image}`
     img.src = `assets/medias/${photographFolder}/${mediaList[index].image}`
   } else {
