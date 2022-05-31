@@ -143,27 +143,44 @@
         class="lightbox"
         aria-hidden="true"
         role="dialog"
+        aria-label="image closeup view"
         tabindex="0"
       >
-        <img class="lightbox__thumbnail" aria-hidden="true" />
-        <img class="lightbox__img" aria-hidden="true" tabindex="0" />
+        <img class="lightbox__thumbnail" aria-hidden="true" aria-label="low res preview" />
+        <img
+          class="lightbox__img"
+          aria-hidden="true"
+          aria-labelledby="lightboxTitle"
+          tabindex="0"
+        />
         <video
           class="lightbox__video"
           controls="true"
           aria-hidden="true"
+          aria-labelledby="lightboxTitle"
           tabindex="0"
         ></video>
-        <h2 class="lightbox__title" tabindex="0"></h2>
-        <div role="button" class="lightbox__arrowLeft" tabindex="0">
+        <h2 id="lightboxTitle" class="lightbox__title" tabindex="0"></h2>
+        <div
+          role="button"
+          class="lightbox__arrowLeft"
+          aria-label="Previous image"
+          tabindex="0"
+        >
           <p class="sr-only">Previous</p>
         </div>
-        <div role="button" class="lightbox__arrowRight" tabindex="0">
+        <div
+          role="button"
+          class="lightbox__arrowRight"
+          aria-label="Next image"
+          tabindex="0"
+        >
           <p class="sr-only">Next</p>
         </div>
         <div
           role="button"
           class="lightbox__close"
-          aria-label="Close Lightbox"
+          aria-label="Close dialog"
           tabindex="0"
         ></div>
       </div>
