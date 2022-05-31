@@ -2,5 +2,14 @@
 
 ## Démarrer le projet
 
-Rien à installer ici, il suffit d'ouvrir le fichier `index.html`.
+Installer les paquets :
+```
+npm install
+```
 
+Executer la commande qui génère les miniatures (`ffmpeg` doit être installé sur le système):
+```
+npm run thumbnails
+```
+
+Le projet peut être lancé avec Live Server
