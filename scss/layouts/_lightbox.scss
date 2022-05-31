@@ -12,6 +12,7 @@
   right: 0;
 
   &__img,
+  &__thumbnail,
   &__video {
     @include focusable-block;
     &[aria-hidden='true'] {

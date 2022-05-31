@@ -6,6 +6,7 @@ let photographFolder
 
 function init() {
   const lightbox = document.querySelector('.lightbox')
+  const img = document.querySelector('.lightbox__img')
   const arrowLeft = document.querySelector('.lightbox__arrowLeft')
   const arrowRight = document.querySelector('.lightbox__arrowRight')
   const closeBtn = document.querySelector('.lightbox__close')
@@ -15,6 +16,7 @@ function init() {
   arrowLeft.addEventListener('click', previous)
   arrowRight.addEventListener('click', next)
   closeBtn.addEventListener('click', close)
+  img.addEventListener('load', () => img.setAttribute('aria-hidden', 'false'))
   lightbox.addEventListener('keydown', (e) => {
     if (e.key !== 'Tab') return false
 
@@ -70,6 +72,7 @@ function close() {
   const main = document.querySelector('main')
   const lightbox = document.querySelector('.lightbox')
   const img = document.querySelector('.lightbox__img')
+  const thumbnail = document.querySelector('.lightbox__thumbnail')
   const overlay = document.querySelector('.overlay')
 
   lightbox.setAttribute('aria-hidden', 'true')
@@ -78,11 +81,13 @@ function close() {
   body.classList.remove('no-scroll')
 
   /* Prevent image flash when re-open */
+  thumbnail.removeAttribute('src')
   img.removeAttribute('src')
 }
 
 function displayMedia(index) {
   const img = document.querySelector('.lightbox__img')
+  const thumbnail = document.querySelector('.lightbox__thumbnail')
   const video = document.querySelector('.lightbox__video')
   const title = document.querySelector('.lightbox__title')
 
@@ -95,10 +100,14 @@ function displayMedia(index) {
   if (mediaList[index].image) {
     video.setAttribute('aria-hidden', 'true')
 
-    img.setAttribute('aria-hidden', 'false')
+    thumbnail.setAttribute('aria-hidden', 'false')
+    img.setAttribute('aria-hidden', 'true') // Sera affiché lorsque l'image haute résolution sera chargé
+    thumbnail.src = `assets/thumbnails/${photographFolder}/${mediaList[index].image}`
     img.src = `assets/medias/${photographFolder}/${mediaList[index].image}`
   } else {
-    img.removeAttribute('src') // Prevent image flash when re-open
+    thumbnail.removeAttribute('src') // Prevent image flash when re-open
+    img.removeAttribute('src')
+    thumbnail.setAttribute('aria-hidden', 'true')
     img.setAttribute('aria-hidden', 'true')
 
     video.setAttribute('aria-hidden', 'false')
