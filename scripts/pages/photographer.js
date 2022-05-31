@@ -5,6 +5,11 @@ import contactForm from '../utils/contactForm'
 import lightbox from '../utils/lightbox'
 import { getNodeIndexIn, minmax } from '../utils/functions'
 
+/* Datas envoyés par l'API */
+let data
+/* Tableau d'association entre les datas et les éléments HTML */
+const mediasElements = {}
+
 init()
 
 async function displayData(data) {
@@ -26,6 +31,9 @@ async function displayData(data) {
   data.medias.forEach((media) => {
     const mediaModel = mediaFactory(media, data.photographer)
     const mediaCardDOM = mediaModel.getThumbnailDOM()
+
+    /* L'élément est listé pour pouvoir être trié plus tard */
+    mediasElements[media.id] = mediaCardDOM
 
     mediasSection.appendChild(mediaCardDOM)
   })
@@ -78,7 +86,7 @@ async function init() {
   const photographerId = parseInt(
     new URL(document.location).searchParams.get('id')
   )
-  const data = await API.getMedias(photographerId)
+  data = await API.getMedias(photographerId)
 
   /* Affiche le photographe et ses photos */
   displayData(data)
@@ -169,5 +177,25 @@ function dropdownToggle() {
 }
 
 function sort(arg) {
-  console.log(`Sort by ${arg}`)
+  const mediasSection = document.querySelector('.medias')
+  const medias = data.medias
+
+  medias.sort((a, b) => {
+    if (a[arg] < b[arg]) return -1
+    if (a[arg] > b[arg]) return 1
+
+    return 0
+  })
+
+  if (arg !== 'title') medias.reverse()
+
+  medias.forEach((media) => mediasSection.appendChild(mediasElements[media.id]))
+}
+
+export function getMedias() {
+  return data.medias
+}
+
+export function getPhotographer() {
+  return data.photographer
 }

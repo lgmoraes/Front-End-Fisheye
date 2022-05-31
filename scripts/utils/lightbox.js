@@ -1,20 +1,16 @@
+import { getMedias, getPhotographer } from '../pages/photographer'
 import { getPhotographFolder } from '../utils/functions'
 
-const mediaList = []
 let mediaListIndex = 0
 let photographFolder
 
-function init(medias, photographerName) {
+function init() {
   const lightbox = document.querySelector('.lightbox')
   const arrowLeft = document.querySelector('.lightbox__arrowLeft')
   const arrowRight = document.querySelector('.lightbox__arrowRight')
   const closeBtn = document.querySelector('.lightbox__close')
 
-  photographFolder = getPhotographFolder(photographerName)
-
-  medias.forEach((m) => {
-    mediaList.push(m)
-  })
+  photographFolder = getPhotographFolder(getPhotographer().name)
 
   arrowLeft.addEventListener('click', previous)
   arrowRight.addEventListener('click', next)
@@ -90,6 +86,8 @@ function displayMedia(index) {
   const video = document.querySelector('.lightbox__video')
   const title = document.querySelector('.lightbox__title')
 
+  const mediaList = getMedias()
+
   mediaListIndex = index
 
   title.innerHTML = mediaList[index].title
@@ -109,6 +107,8 @@ function displayMedia(index) {
 }
 
 function next() {
+  const mediaList = getMedias()
+
   mediaListIndex++
 
   if (mediaListIndex > mediaList.length - 1) mediaListIndex = 0
@@ -117,6 +117,8 @@ function next() {
 }
 
 function previous() {
+  const mediaList = getMedias()
+
   mediaListIndex--
 
   if (mediaListIndex < 0) mediaListIndex = mediaList.length - 1
@@ -124,4 +126,4 @@ function previous() {
   displayMedia(mediaListIndex)
 }
 
-export default { mediaList, init, open, close, next, previous }
+export default { init, open, close, next, previous }
