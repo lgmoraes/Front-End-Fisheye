@@ -3,6 +3,9 @@ import photographerFactory from '../factories/photographer'
 import mediaFactory from '../factories/media'
 import contactForm from '../utils/contactForm'
 import lightbox from '../utils/lightbox'
+import { getNodeIndexIn, minmax } from '../utils/functions'
+
+init()
 
 async function displayData(data) {
   const photographBanner = document.querySelector('.photograph-banner')
@@ -83,9 +86,50 @@ async function init() {
   /* MODAL & LIGHTBOX */
   contactForm.init(data.photographer.name)
   lightbox.init(data.medias, data.photographer.name)
-}
 
-init()
+  /* TRI */
+  const dropdownToggleElement = document.querySelector('.dropdown__toggle')
+  const dropdownMenu = document.querySelector('.dropdown__menu')
+  const dropdownItems = document.querySelectorAll('.dropdown__item')
+
+  /* Controles du Dropdown */
+  dropdownToggleElement.addEventListener('click', dropdownToggle)
+  dropdownToggleElement.addEventListener('keydown', function (e) {
+    if (e.key !== ' ' && e.key !== 'Enter') return false
+
+    dropdownToggle()
+    document.querySelector('.dropdown__item').focus()
+    e.preventDefault()
+  })
+  dropdownItems.forEach((item) =>
+    item.addEventListener('click', () => {
+      sort(item.getAttribute('data-sort'))
+      dropdownToggle()
+      document.querySelector('.dropdown__toggle').innerHTML = item.innerHTML
+      dropdownToggleElement.focus()
+    })
+  )
+  document
+    .querySelector('.dropdown__item:last-child')
+    .addEventListener('keydown', function (e) {
+      if (e.key === 'Tab' && !e.shiftKey) dropdownToggle()
+    })
+  dropdownMenu.addEventListener('keydown', function (e) {
+    if (e.key !== 'ArrowUp' && e.key !== 'ArrowDown') return false
+
+    let focusIndex = getNodeIndexIn(e.target, dropdownItems)
+    if (e.key === 'ArrowUp') focusIndex--
+    else if (e.key === 'ArrowDown') focusIndex++
+
+    focusIndex = minmax(focusIndex, 0, dropdownItems.length - 1)
+    dropdownItems[focusIndex].focus()
+
+    e.preventDefault()
+  })
+  dropdownMenu.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') dropdownToggle()
+  })
+}
 
 export function like(article) {
   const heart = article.querySelector('.media__heart')
@@ -104,4 +148,26 @@ export function like(article) {
     counter.textContent = likes - 1
     counterTotal.textContent = likesTotal - 1
   }
+}
+
+function dropdownToggle() {
+  const dropdown = document.querySelector('.dropdown')
+  const dropdownToggle = document.querySelector('.dropdown__toggle')
+  const dropdownMenu = document.querySelector('.dropdown__menu')
+
+  if (dropdownToggle.classList.contains('hidden')) {
+    dropdownToggle.classList.remove('hidden')
+    dropdownMenu.classList.add('hidden')
+    dropdownToggle.setAttribute('aria-expended', 'false')
+    dropdown.classList.remove('expanded')
+  } else {
+    dropdownToggle.classList.add('hidden')
+    dropdownMenu.classList.remove('hidden')
+    dropdownToggle.setAttribute('aria-expended', 'true')
+    dropdown.classList.add('expanded')
+  }
+}
+
+function sort(arg) {
+  console.log(`Sort by ${arg}`)
 }

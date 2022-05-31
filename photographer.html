@@ -23,6 +23,44 @@
     <main id="main" aria-hidden="false">
       <section class="photograph-banner"></section>
       <aside class="insert"></aside>
+      <div class="sort">
+        <p>Trier par :</p>
+        <div class="dropdown">
+          <button
+            class="dropdown__toggle"
+            type="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            Date
+          </button>
+          <div class="dropdown__menu hidden" aria-label="Sort medias">
+            <button
+              class="dropdown__item"
+              data-sort="popularity"
+              aria-label="Trier par popularité"
+            >
+              Popularité
+            </button>
+            <hr />
+            <button
+              class="dropdown__item"
+              data-sort="date"
+              aria-label="Trier par date"
+            >
+              Date
+            </button>
+            <hr />
+            <button
+              class="dropdown__item"
+              data-sort="title"
+              aria-label="Trier par titre"
+            >
+              Titre
+            </button>
+          </div>
+        </div>
+      </div>
       <section class="medias"></section>
     </main>
     <div class="overlay" aria-hidden="true">

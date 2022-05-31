@@ -1,0 +1,58 @@
+@use '../utils/' as *;
+
+.dropdown {
+  &::after {
+    content: '';
+    width: 13px;
+    height: 13px;
+
+    background: no-repeat center url('/assets/icons/arrow-dropdown.svg');
+    background-size: contain;
+    transform: rotate(0deg);
+    transition: transform 0.3s;
+
+    position: absolute;
+    top: 17px;
+    right: 17px;
+  }
+  &.expanded::after {
+    transform: rotate(-180deg);
+  }
+  width: 120px;
+  padding: 0.5em;
+
+  border-radius: $border-radius;
+  background: $background-primary;
+
+  position: relative;
+
+  &__toggle,
+  &__menu {
+    &.hidden {
+      display: none;
+    }
+    hr {
+      border: 0;
+      border-top: 1px solid white;
+    }
+  }
+  &__item,
+  &__toggle {
+    &:hover,
+    &:focus {
+      background-color: $color-primary;
+      outline: none;
+    }
+    width: 100%;
+    margin: 0;
+    padding: 0.4em 0.5em;
+
+    text-align: left;
+    background: none;
+    border: none;
+    border-radius: $border-radius - 1px;
+    color: white;
+    font-size: 1em;
+    cursor: pointer;
+  }
+}

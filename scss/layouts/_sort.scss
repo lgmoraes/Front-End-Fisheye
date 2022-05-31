@@ -1,0 +1,20 @@
+@use '../utils/' as *;
+
+.sort {
+  max-width: $page-width;
+  height: 60px;
+  padding: 0 20px;
+  margin: auto;
+
+  > p {
+    margin-right: 1em;
+
+    font-weight: 700;
+    vertical-align: top;
+
+    display: inline-block;
+  }
+  .dropdown {
+    display: inline-block;
+  }
+}
