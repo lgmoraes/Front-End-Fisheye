@@ -47,28 +47,6 @@ async function displayData(data) {
     })
   })
 
-  /* KEY NAVIGATION */
-
-  const logo = document.querySelector('.header__logo')
-  const thumbnailLast = document.querySelector(
-    '.media:last-child .media__heart'
-  )
-
-  logo.addEventListener('keydown', (e) => {
-    if (e.key !== 'Tab' || !e.shiftKey) return false
-
-    thumbnailLast.focus()
-    document.querySelector('html').scrollTop += 100
-    e.preventDefault()
-  })
-  thumbnailLast.addEventListener('keydown', (e) => {
-    if (e.key !== 'Tab' || e.shiftKey) return false
-
-    logo.focus()
-    document.querySelector('html').scrollTop = 0
-    e.preventDefault()
-  })
-
   /* INSERT */
 
   const likes = data.medias.reduce((cumul, media) => cumul + media.likes, 0)
