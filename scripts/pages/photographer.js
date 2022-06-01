@@ -46,6 +46,14 @@ async function displayData(data) {
       video.pause()
     })
   })
+  document.querySelectorAll('.medias video').forEach((video) => {
+    video.addEventListener('focus', () => {
+      video.play()
+    })
+    video.addEventListener('blur', () => {
+      video.pause()
+    })
+  })
 
   /* INSERT */
 
