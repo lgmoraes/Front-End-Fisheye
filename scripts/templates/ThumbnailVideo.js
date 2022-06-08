@@ -1,33 +1,40 @@
-import { getPhotographFolder, getElementIndex } from '../utils/functions'
+import { getElementIndex } from '../utils/functions'
 import { like } from '../pages/photographer'
 import lightbox from '../utils/lightbox'
 
-export default function mediaFactory(media, photographer) {
-  const { id, title, date, likes } = media
-  const mediaFolder = getPhotographFolder(photographer.name)
+export default class ThumbnailVideo {
+  constructor(media) {
+    this._media = media
+  }
 
-  function getThumbnailDOM() {
+  create() {
     const article = document.createElement('article')
 
     article.className = 'media'
     article.innerHTML = `
-			${
-        media.image
-          ? `<img class="media__thumbnail" src="assets/thumbnails/${mediaFolder}/${media.image}" alt="${media.title}" tabindex="0" />`
-          : `<video class="media__thumbnail" src="assets/thumbnails/${mediaFolder}/${media.video}" muted="true"></video>`
-      }
+      <video
+        class="media__thumbnail"
+        src="assets/thumbnails/${this._media.folder}/${this._media.video}"
+        muted="true"
+      ></video>
 			<div class="media__desc">
-				<h2 class="media__name" tabindex="0">${title}</h2>
+				<h2 class="media__name" tabindex="0">${this._media.title}</h2>
 
 				<div class="media__likes">
-          <span class="media__counter">${likes}</span>
-          <div class="media__heart media__heart--empty" role="button" aria-label="likes" tabindex="0"></div>
+          <span class="media__counter">${this._media.likes}</span>
+          <div
+            class="media__heart media__heart--empty"
+            role="button"
+            aria-label="likes"
+            tabindex="0"
+          ></div>
         </div>
 			</div>
 		`
 
     const thumbnail = article.querySelector('.media__thumbnail')
     const heart = article.querySelector('.media__heart')
+    const video = article.querySelector('video')
 
     article.addEventListener('click', function () {
       const index = getElementIndex(this)
@@ -50,8 +57,19 @@ export default function mediaFactory(media, photographer) {
       e.preventDefault()
     })
 
+    video.addEventListener('mouseenter', () => {
+      video.play()
+    })
+    video.addEventListener('mouseleave', () => {
+      video.pause()
+    })
+    video.addEventListener('focus', () => {
+      video.play()
+    })
+    video.addEventListener('blur', () => {
+      video.pause()
+    })
+
     return article
   }
-
-  return { id, title, date, likes, getThumbnailDOM }
 }

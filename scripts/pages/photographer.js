@@ -1,12 +1,19 @@
 import API from '../api'
-import photographerFactory from '../factories/photographer'
-import mediaFactory from '../factories/media'
+import MediasFactory from '../factories/MediasFactory'
+import PhotographersFactory from '../factories/PhotographersFactory'
+import ThumbnailImage from '../templates/ThumbnailImage'
+import ThumbnailVideo from '../templates/ThumbnailVideo'
+import PhotographerBanner from '../templates/PhotographerBanner'
 import contactForm from '../utils/contactForm'
 import lightbox from '../utils/lightbox'
 import { getNodeIndexIn, minmax } from '../utils/functions'
 
 /* Datas envoyés par l'API */
 let data
+/* Contien une instance de Photographer */
+let photographer
+/* Contien des instances de MediaImage et MediaVideo */
+const medias = []
 /* Tableau d'association entre les datas et les éléments HTML */
 const mediasElements = {}
 
@@ -16,10 +23,10 @@ async function displayData(data) {
   const photographBanner = document.querySelector('.photograph-banner')
   const mediasSection = document.querySelector('.medias')
 
-  const photographerModel = photographerFactory(data.photographer)
-  const photographerBannerDOM = photographerModel.getUserBannerDOM()
-
   /* BANNER */
+
+  const photographer = new PhotographersFactory(data.photographer)
+  const photographerBannerDOM = new PhotographerBanner(photographer).create()
 
   photographBanner.parentElement.replaceChild(
     photographerBannerDOM,
@@ -28,31 +35,18 @@ async function displayData(data) {
 
   /* THUMBNAILS */
 
-  data.medias.forEach((media) => {
-    const mediaModel = mediaFactory(media, data.photographer)
-    const mediaCardDOM = mediaModel.getThumbnailDOM()
+  data.medias.forEach((mediaData) => {
+    const type = mediaData.image ? 'image' : 'video'
+    const media = new MediasFactory(mediaData, type)
+    const mediaCardDOM =
+      type === 'image'
+        ? new ThumbnailImage(media).create()
+        : new ThumbnailVideo(media).create()
 
     /* L'élément est listé pour pouvoir être trié plus tard */
     mediasElements[media.id] = mediaCardDOM
 
     mediasSection.appendChild(mediaCardDOM)
-  })
-
-  document.querySelectorAll('.medias video').forEach((video) => {
-    video.addEventListener('mouseenter', () => {
-      video.play()
-    })
-    video.addEventListener('mouseleave', () => {
-      video.pause()
-    })
-  })
-  document.querySelectorAll('.medias video').forEach((video) => {
-    video.addEventListener('focus', () => {
-      video.play()
-    })
-    video.addEventListener('blur', () => {
-      video.pause()
-    })
   })
 
   /* INSERT */
@@ -164,7 +158,7 @@ function dropdownToggle() {
 
 function sort(arg) {
   const mediasSection = document.querySelector('.medias')
-  const medias = data.medias
+  const medias = getMedias()
 
   medias.sort((a, b) => {
     if (a[arg] < b[arg]) return -1
@@ -179,9 +173,18 @@ function sort(arg) {
 }
 
 export function getMedias() {
-  return data.medias
+  if (medias.length === 0)
+    data.medias.forEach((media) => {
+      const type = media.image ? 'image' : 'video'
+      medias.push(new MediasFactory(media, type))
+    })
+
+  return medias
 }
 
 export function getPhotographer() {
-  return data.photographer
+  if (photographer === undefined)
+    photographer = new PhotographersFactory(data.photographer)
+
+  return photographer
 }
