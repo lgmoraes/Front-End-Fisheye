@@ -1,8 +1,7 @@
 import API from '../api'
 import MediasFactory from '../factories/MediasFactory'
 import PhotographersFactory from '../factories/PhotographersFactory'
-import ThumbnailImage from '../templates/ThumbnailImage'
-import ThumbnailVideo from '../templates/ThumbnailVideo'
+import ThumbnailsFactory from '../factories/ThumbnailsFactory'
 import PhotographerBanner from '../templates/PhotographerBanner'
 import contactForm from '../utils/contactForm'
 import lightbox from '../utils/lightbox'
@@ -38,10 +37,7 @@ async function displayData(data) {
   data.medias.forEach((mediaData) => {
     const type = mediaData.image ? 'image' : 'video'
     const media = new MediasFactory(mediaData, type)
-    const mediaCardDOM =
-      type === 'image'
-        ? new ThumbnailImage(media).create()
-        : new ThumbnailVideo(media).create()
+    const mediaCardDOM = new ThumbnailsFactory(media, type).create()
 
     /* L'élément est listé pour pouvoir être trié plus tard */
     mediasElements[media.id] = mediaCardDOM
