@@ -1,6 +1,6 @@
 export default {
   getMedias: async function (id) {
-    return await fetch('../../data/photographers.json')
+    return await fetch('data/photographers.json')
       .then((res) => res.json())
       .then((res) => ({
         photographer: res.photographers.find((p) => p.id === id),
@@ -8,7 +8,7 @@ export default {
       }))
   },
   getPhotographers: async function () {
-    return await fetch('../../data/photographers.json')
+    return await fetch('data/photographers.json')
       .then((res) => res.json())
       .then((res) => res.photographers)
   },
